@@ -2,10 +2,5 @@
 node_modules
 npm-debug.log
 .env
-<<<<<<< HEAD
-Anh
-.gitignore
-=======
 package-lock.json
 config.json
->>>>>>> master
