@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var RecipeIngredients = sequelize.define("RecipeIngredients", {
+  var Measurement = sequelize.define("Measurement", {
     // recipeID: {
     //   type: DataTypes.INTEGER,
     // },
@@ -14,5 +14,5 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  return RecipeIngredients;
+  return Measurement;
 };
