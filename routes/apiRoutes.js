@@ -34,21 +34,6 @@ module.exports = function(app) {
       res.json(result);
     });
   });
-<<<<<<< HEAD
-  // Create a new recipe
-  app.post("/api/recipes", function(req, res) {
-    db.Recipe.create(req.body).then(function(dbRecipe) {
-      res.json(dbRecipe);
-    });
-  });
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
-=======
 
   //Adding new recipeIngredients
   app.post("/api/measure",function(req,res) {
@@ -82,7 +67,6 @@ module.exports = function(app) {
       name: req.body.name
     }).then(function(result) {
       res.json(result);
->>>>>>> master
     });
   });
 };

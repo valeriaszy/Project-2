@@ -6,18 +6,7 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [1, 100]
       }
-<<<<<<< HEAD
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-=======
     }
->>>>>>> master
   });
 
   //many ingredients can be in a recipe
