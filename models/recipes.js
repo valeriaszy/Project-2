@@ -4,21 +4,21 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len:[1, 100]
+        len: [1, 100]
       }
     },
     description: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        len:[1]
+        len: [1]
       }
     },
     instructions: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        len:[1]
+        len: [1]
       }
     }
   });
@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
   //any ingredient can show up in many recipes
   Recipe.associate = function(models) {
     Recipe.belongsToMany(models.Ingredient, {
-      through: "RecipeIngredients",
+      through: "RecipeIngredients"
       // foreignKey: {
       //   allowNull: false
       // },
