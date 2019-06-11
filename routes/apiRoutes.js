@@ -10,7 +10,18 @@ module.exports = function(app) {
       query[where] = { id: req.params.id };
     }
 
-    db.Recipe.findAll(querry).then(function(results) {
+    db.Recipe.findAll(querry,
+      { 
+        include:[{
+          model:db.Ingredient,
+          atributes:["name"],
+          as:"Ingredients",
+          through:{
+            atributes:["quantity","unitOfMeasure"]
+          }
+        }]
+      }
+    ).then(function(results) {
       res.json(results);
     });
   });
