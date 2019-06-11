@@ -10,7 +10,7 @@ module.exports = function(app) {
       query[where] = { id: req.params.id };
     }
 
-    db.Recipe.findAll(querry,
+    db.Recipe.findAll(query,
       { 
         include:[{
           model:db.Ingredient,
@@ -29,12 +29,12 @@ module.exports = function(app) {
   ///Ingredients
   //return all ingredients or via id
   app.get("api/ingredients/:id?", function(req, res) {
-    var querry = {};
+    var query = {};
     if (req.params.id) {
       query[where] = { id: req.params.id };
     }
 
-    db.Ingredient.findAll(querry).then(function(results) {
+    db.Ingredient.findAll(query).then(function(results) {
       res.json(results);
     });
   });
