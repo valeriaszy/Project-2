@@ -1,3 +1,4 @@
+ <script src='/js/createRecipe.js'></script>
 <div id="recipe">
     <div class="container">
         <div class="row">
@@ -12,22 +13,30 @@
                             <form>
                                 <div class="form-group">
                                     <label for="exampleFormControlInput1">Recipe Name</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                                        placeholder="name@example.com">
+                                    <input type="email" class="form-control" id="RecipeName"
+                                        placeholder="enter recipe name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Ingridients</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                    </select>
+                                    <div class="ingredientList">
+                                        <div class="row ingredientRow">
+                                            <a>Ingredient: </a>
+                                            <input type="text" class="ingredientQuantity" name="ingredientQuantity"
+                                                placeholder="Ingredient Quantity">
+                                            <input type="text" class="ingredientName" name="ingredientName"
+                                                placeholder="IngredientName">
+                                            <input type="text" class="ingredientMeasurement"
+                                                name="ingredientMeasurement" placeholder="Ingredient Measurement">
+                                            <button class="addIngredient">+</button>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Instructions</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea class="form-control" id="instructions" rows="3"></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" id="add-recipe">Add Recipe </button>
                                 </div>
                             </form>
                         </div>
+                       
