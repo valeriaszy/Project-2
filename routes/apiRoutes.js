@@ -2,8 +2,8 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  ///Recipe
-  //return all recipe or via id
+  //Recipe
+  // return all recipe or via id
   app.get("/api/recipe/:id?", function(req, res) {
     var query = {};
     if (req.params.id) {
