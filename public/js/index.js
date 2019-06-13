@@ -93,7 +93,23 @@ var handleDeleteBtnClick = function() {
     refreshExamples();
   });
 };
+// function addRecipes(event) {
+//   var ingridientsList = document.getElementById("noOfIngridients");
+//   var recipeData = {
+//     recipeName: $("#RecipeName")
+//       .val()
+//       .trim(),
+//     noOfIntgridients:
+//       ingridientsList.options[ingridientsList.selectedIndex].value,
+//     desction: $("#instructions")
+//       .val()
+//       .trim()
+//   };
+// }
 
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+// // Add event listeners to the submit and delete buttons
+// $submitBtn.on("click", handleFormSubmit);
+// $exampleList.on("click", ".delete", handleDeleteBtnClick);
+// // when you click on the add recipe button
+// $("#add-recipe").on("click", addRecipes);
