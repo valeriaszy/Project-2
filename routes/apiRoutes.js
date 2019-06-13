@@ -14,7 +14,11 @@ module.exports = function(app) {
       { where:query,
         include:[{
           model:db.Ingredient,
+          attributes:["id","name"],
           as:"Ingredients",
+          through:{
+            attributes:["quantity","unitOfMeasurement"]
+          },
           require:true
         }]
       }

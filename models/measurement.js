@@ -9,7 +9,7 @@ module.exports = function(sequelize, DataTypes) {
     quantity: {
       type: DataTypes.INTEGER
     },
-    unitOfMeasure:{
+    unitOfMeasure: {
       type: DataTypes.STRING
     }
   });
