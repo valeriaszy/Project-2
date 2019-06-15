@@ -10,3 +10,24 @@
 .nav-item {
   font-family: 'roboto'
 }
+/*Shop Handlebars Css*/
+.shop {
+  box-sizing: border-box;
+  height:100%;
+  width:100%;
+  margin-top:-10px;
+  padding:30px;
+}
+/* Remove margins and padding from the list */
+ul {
+  margin: 0;
+  padding: 0;
+}
+/* Style the header */
+.header {
+  background-color: #FFF8DC;
+  padding: 30px 40px;
+  color: rgb(2, 2, 2);
+  text-align: center;
+}
+
