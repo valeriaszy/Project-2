@@ -73,4 +73,14 @@ module.exports = function(app) {
       res.json(result);
     });
   });
+
+  app.post("/api/ingredientSearch/s",function(req, res) {
+    query = {where:{
+      name: req.query.s
+    }}
+
+    db.Ingredient.findOne(query).then(function(result)) {
+      res.json(result);
+    }
+  });
 };

@@ -1,53 +1,47 @@
 $(document).ready(function() {
-  addIngredientRow();
-});
-
-function addIngredientRow() {
-  //this binds the add row functionality to the + button
   $(".addIngredient").on("click", function(event) {
     event.preventDefault();
-    //defining variables
-    var newRow = $("<div class='row ingredientRow'></div>");
-    var addIngredientInputs =
-      "<br><a>Ingredient: </a> <input type='text' class='ingredientQuantity' name='ingredientQuantity' placeholder='Ingredient Quantity'> <input type='text' class='ingredientName' name='ingredientName' placeholder='Ingredient Name'> <input type='text' class='ingredientMeasurement' name='ingredientMeasurement' placeholder='Ingredient Measurement'>";
-    var addIngredientButton = " <button class='addIngredient'>+</button>";
-
-    //"this" refers to ".addIngredient" for this entire function
-
-    //this disables the text box (this should be where we start pulling the inputs and pushing them into an array)
-    $(this)
-      .parent(".ingredientRow")
-      .find("input")
-      .prop("disabled", true);
-
-    //this unbinds the click functionality of adding a new row abd chages + to a -
-    $(this).off("click");
-    $(this).text("-");
-
-    //this changes the class of the button
-    $(".addIngredient")
-      .addClass("deleteIngredient")
-      .removeClass("addIngredient");
-
-    //this binds the delete functionality to the - button
-    $(".deleteIngredient").on("click", function() {
-      $(this)
-        .parent(".ingredientRow")
-        .remove();
-    });
-
-    //this add a new row for ingredient input without the button
-    $(".ingredientList").append(newRow);
-    newRow.append(addIngredientInputs);
-
-    //this adds the + button to the new row
-    newRow.append(addIngredientButton);
-
-    //this will run the entire function again for all new made + buttons
-    addIngredientRow();
+    var rowClick = this;
+    addIngredientRow(rowClick);
   });
-}
+});
 
+$(".deleteIngredient").on("click", function() {
+  $(this)
+    .parent(".ingredientRow")
+    .remove();
+});
+
+function addIngredientRow(rowClick) {
+  //defining variables
+  var newRow = $("<div class='row ingredientRow'></div>");
+  var addIngredientInputs =
+    "<br><a>Ingredient: </a> <input type='text' class='ingredientQuantity' name='ingredientQuantity' placeholder='Ingredient Quantity'> <input type='text' class='ingredientName' name='ingredientName' placeholder='Ingredient Name'> <input type='text' class='ingredientMeasurement' name='ingredientMeasurement' placeholder='Ingredient Measurement'>";
+  var addIngredientButton = " <button class='addIngredient'>+</button>";
+
+  $(rowClick)
+    .parent(".ingredientRow")
+    .find("input")
+    .prop("disabled", true);
+
+  //this unbinds the click functionality of adding a new row abd chages + to a -
+  $(rowClick).off("click");
+  $(rowClick).text("-");
+
+  //this changes the class of the button
+  $(".addIngredient")
+    .addClass("deleteIngredient")
+    .removeClass("addIngredient");
+
+  //this binds the delete functionality to the - button
+
+  //this add a new row for ingredient input without the button
+  $(".ingredientList").append(newRow);
+  newRow.append(addIngredientInputs);
+
+  //this adds the + button to the new row
+  newRow.append(addIngredientButton);
+}
 
 // function addRecipes(event) {
 //   var ingridientsList = document.getElementById("noOfIngridients");
