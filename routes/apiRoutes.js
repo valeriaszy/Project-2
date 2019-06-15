@@ -44,8 +44,8 @@ module.exports = function(app) {
     //newRows = req.body;
     row = req.body;
     db.Measurement.create({
-      RecipeId: row.RecipeId,
-      IngredientId: row.IngredientId,
+      recipeId: row.RecipeId,
+      ingredientId: row.IngredientId,
       quantity: row.quantity,
       unitOfMeasure: row.unitOfMeasure
     }).then(function(result){

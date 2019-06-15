@@ -7,12 +7,6 @@ $(document).ready(function() {
   });
 });
 
-$(".deleteIngredient").on("click", function() {
-  $(this)
-    .parent(".ingredientRow")
-    .remove();
-});
-
 $("form").on("submit", function() {
   handleSubmit();
 });
@@ -42,7 +36,11 @@ function addIngredientRow(rowClick) {
     .removeClass("addIngredient");
 
   //this binds the delete functionality to the - button
-
+  $(".deleteIngredient").on("click", function() {
+    $(this)
+      .parent(".ingredientRow")
+      .remove();
+  });
   //this add a new row for ingredient input without the button
   $(".ingredientList").append(newRow);
   newRow.append(addIngredientInputs);
@@ -80,6 +78,41 @@ function checkIngredient(rowClick) {
       } else {
         console.log("Error "+xhl.status);
       }
+    }
+  })
+}
+
+//Handling submission
+//Compose the JSON data for posting
+
+function handleSubmit() {
+  var newRecipe = {
+    name:$("#RecipeName").value().trim(),
+    imageURL: $("#imageURL").value().trim(),
+    instruction: $("#instructions").value().trim(),
+    description: $("#description").value().trim(),
+  };
+
+  $.ajax({
+    type:"POST",
+    url:"/api/recipe",
+    data: newRecipe,
+    success: function(result) {
+      var ingredientRowArr = $("#ingredientList").find(".ingredientRow").toArray();
+      var measurementData;
+      ingredientRowArr.forEach(function(ingredientRow) {
+        measurementData = {
+          recipeId:result.id,
+          ingredientId:$(ingredientRow).data('id'),
+          quantity:$(ingredientRow).child(".ingredientRow").value().trim(),
+          measurement:$(ingredeitnRow).child(".ingredientMeasurement").value().trim()
+        }
+        $.ajax({
+          type:"POST",
+          url:"/api/measurement",
+          data: measurementData
+        })
+      })
     }
   })
 }
