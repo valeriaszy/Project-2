@@ -1,17 +1,17 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/register", function(req, res) {
-    res.render("register");
+  app.get("/view", function(req, res) {
+    res.render("view");
   });
   app.get("/login", function(req, res) {
     res.render("login");
   });
-  app.get("/profile", function(req, res) {
-    res.render("profile");
+  app.get("/shop", function(req, res) {
+    res.render("shop");
   });
-  app.get("/recipes", function(req, res) {
-    res.render("recipe");
+  app.get("/add", function(req, res) {
+    res.render("add");
   });
   // Load index page
   app.get("/", function(req, res) {
