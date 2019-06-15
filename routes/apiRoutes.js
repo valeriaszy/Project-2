@@ -90,7 +90,7 @@ module.exports = function(app) {
           {
             status:404,
             error: "Not found"
-          },
+          }
         );
       }
       
