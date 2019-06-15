@@ -2,6 +2,7 @@ $(document).ready(function() {
   $(".addIngredient").on("click", function(event) {
     event.preventDefault();
     var rowClick = this;
+    checkIngredient(rowClick);
     addIngredientRow(rowClick);
   });
 });
@@ -12,6 +13,12 @@ $(".deleteIngredient").on("click", function() {
     .remove();
 });
 
+$("form").on("submit", function() {
+  handleSubmit();
+});
+
+//// FUNCTION DECLARE
+///buton functionality
 function addIngredientRow(rowClick) {
   //defining variables
   var newRow = $("<div class='row ingredientRow'></div>");
@@ -19,6 +26,7 @@ function addIngredientRow(rowClick) {
     "<br><a>Ingredient: </a> <input type='text' class='ingredientQuantity' name='ingredientQuantity' placeholder='Ingredient Quantity'> <input type='text' class='ingredientName' name='ingredientName' placeholder='Ingredient Name'> <input type='text' class='ingredientMeasurement' name='ingredientMeasurement' placeholder='Ingredient Measurement'>";
   var addIngredientButton = " <button class='addIngredient'>+</button>";
 
+  /// Row click is the button that is clicked
   $(rowClick)
     .parent(".ingredientRow")
     .find("input")
@@ -41,6 +49,39 @@ function addIngredientRow(rowClick) {
 
   //this adds the + button to the new row
   newRow.append(addIngredientButton);
+}
+
+// checkIngredient
+// search up the ingredients in the database
+// return id if found, it not return newly insert id
+function checkIngredient(rowClick) {
+  var ingredientRow = $(rowClick).parent(".ingredientRow");
+  var searchIngredient = ingredientRow
+    .children(".ingredientName")
+    .value()
+    .trim();
+
+  $.ajax({
+    type:"GET",
+    url:`/api/ingredientSearch?s=${searchIngredient}`,
+    success: function(result) {
+      $(ingredientRow).data("id",result.id);
+    },
+    failure: function(xhr) {
+      if(xhl.status === 404) {
+        $.ajax({
+          type:"POST",
+          url:`/api/ingredient/`,
+          data: {name: ingredientRow},
+          success: function(result) {
+            $(ingredientRow).data("id",result.id);
+          }
+        })
+      } else {
+        console.log("Error "+xhl.status);
+      }
+    }
+  })
 }
 
 // function addRecipes(event) {

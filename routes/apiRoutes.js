@@ -74,7 +74,7 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/ingredientSearch/s",function(req, res) {
+  app.post("/api/ingredientSearch",function(req, res) {
     query = {where:{
       name: req.query.s
     }}
