@@ -33,7 +33,7 @@ module.exports = function(app) {
     db.Recipe.create({
       name: newRecipe.name,
       description: newRecipe.description,
-      instructions: newRecipe.instructions
+      instructions: newRecipe.instructions,
     }).then(function(result){
       res.json(result);
     });
@@ -44,8 +44,8 @@ module.exports = function(app) {
     //newRows = req.body;
     row = req.body;
     db.Measurement.create({
-      RecipeId: row.RecipeId,
-      IngredientId: row.IngredientId,
+      recipeId: row.RecipeId,
+      ingredientId: row.IngredientId,
       quantity: row.quantity,
       unitOfMeasure: row.unitOfMeasure
     }).then(function(result){
@@ -71,6 +71,29 @@ module.exports = function(app) {
       name: req.body.name
     }).then(function(result) {
       res.json(result);
+    });
+  });
+
+  app.get("/api/search/ing/:data",function(req, res) {
+
+    var query = {
+      where:{
+        name: req.params.data
+      }
+    };
+
+    db.Ingredient.findOne(query).then(function(result) {
+      if(result) {
+        res.json(result);
+      } else {
+        res.json(
+          {
+            status:404,
+            error: "Not found"
+          },
+        );
+      }
+      
     });
   });
 };
