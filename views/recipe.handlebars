@@ -6,25 +6,26 @@
     </div>
     <div class ="row">
         <div class="col-md-10 mx-auto">
-            <form>
+            <form id="newRecipeForm">
                 <div class="form-group">
                     <label for="RecipeName">Recipe Name</label>
                     <input type="text" class="form-control" id="RecipeName" placeholder="enter recipe name">
                 </div>
                 <div class="form-group">
-                    <div id="ingredientList">
-                        <div class="row ingredientRow">
-                            <a>Ingredient: </a>
-                            <input type="text" class="ingredientQuantity" name="ingredientQuantity" placeholder="Ingredient Quantity"> 
-                            <input type="text" class="ingredientName" name="ingredientName" placeholder="IngredientName">
-                            <input type="text" class="ingredientMeasurement" name="ingredientMeasurement" placeholder="Ingredient Measurement">
-                            <button class="addIngredient">+</button>
-                        </div>
-                    </div>
+                    <label for="imageURL">Description</label>
+                    <textarea class="form-control" id="description"></textarea>
+                </div>
+                <div class = "form-group">
+                    <label for="description">Images Link</label>
+                    <textarea class="form-control" id="imageURL"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="imageURL">Images Link</label>
-                    <textarea class="form-control" id="imageURL"></textarea>
+                    <a>Ingredient: </a>
+                    <div id="ingredientList">
+                    </div>
+                    <div id = "newIngredientForm" >
+                    </div>
+                    <button class="addIngredient">+</button>
                 </div>
                 <div class="form-group">
                     <label for="instructions">Instructions</label>

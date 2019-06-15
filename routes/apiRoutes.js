@@ -33,7 +33,7 @@ module.exports = function(app) {
     db.Recipe.create({
       name: newRecipe.name,
       description: newRecipe.description,
-      instructions: newRecipe.instructions
+      instructions: newRecipe.instructions,
     }).then(function(result){
       res.json(result);
     });
@@ -74,13 +74,26 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/ingredientSearch",function(req, res) {
-    query = {where:{
-      name: req.query.s
-    }}
+  app.get("/api/search/ing/:data",function(req, res) {
 
-    db.Ingredient.findOne(query).then(function(result)) {
-      res.json(result);
-    }
+    var query = {
+      where:{
+        name: req.params.data
+      }
+    };
+
+    db.Ingredient.findOne(query).then(function(result) {
+      if(result) {
+        res.json(result);
+      } else {
+        res.json(
+          {
+            status:404,
+            error: "Not found"
+          },
+        );
+      }
+      
+    });
   });
 };
