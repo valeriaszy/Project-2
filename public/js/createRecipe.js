@@ -3,7 +3,7 @@ $(".addIngredient").on("click", function(event) {
   reviewAddIngredientForm();
 });
 
-$("#newRecipe").on("submit", function(event) {
+$("form").on("submit", function(event) {
   event.preventDefault();
   handleSubmit();
 });
@@ -44,7 +44,9 @@ function addIngredientRow(
   ingredientQuantity
 ) {
   checkIngredient(ingredientName, function(resultId) {
-    var newRow = $("<div class='row' data-id=" + resultId + "></div>");
+    var newRow = $(
+      "<div class='row ingredient' data-id=" + resultId + "></div>"
+    );
     var addIngredientDetail = $(
       "<br><span class='ingredientName mx-2' ><strong>" +
         ingredientName +
@@ -62,7 +64,7 @@ function addIngredientRow(
     $(".deleteIngredient").on("click", function(event) {
       event.preventDefault();
       $(this)
-        .parent(".ingredientRow")
+        .parent(".ingredient")
         .remove();
     });
   });
@@ -118,7 +120,7 @@ function handleSubmit() {
     data: newRecipe,
     success: function(result) {
       var ingredientRowArr = $("#ingredientList")
-        .find(".ingredientRow")
+        .find(".ingredient")
         .toArray();
       var measurementData;
       ingredientRowArr.forEach(function(ingredientRow) {
@@ -134,7 +136,7 @@ function handleSubmit() {
         };
         $.ajax({
           type: "POST",
-          url: "/api/measurement",
+          url: "/api/measure",
           data: measurementData
         });
       });
