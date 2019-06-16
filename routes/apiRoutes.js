@@ -44,10 +44,10 @@ module.exports = function(app) {
     //newRows = req.body;
     row = req.body;
     db.Measurement.create({
-      recipeId: row.RecipeId,
-      ingredientId: row.IngredientId,
+      RecipeId: row.recipeId,
+      IngredientId: row.ingredientId,
       quantity: row.quantity,
-      unitOfMeasure: row.unitOfMeasure
+      unitOfMeasure: row.measurement
     }).then(function(result){
       res.json(result);
     });
@@ -90,7 +90,7 @@ module.exports = function(app) {
           {
             status:404,
             error: "Not found"
-          },
+          }
         );
       }
       

@@ -16,7 +16,25 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.Recipe.findAll({}).then(function(results) {
-      res.render("index", { recipes: results });
+      var recipeRow = [];
+      var tempVar = {};
+      tempVar.recipe = [];
+      if (results.length >= 5) {
+        results.forEach(function(result) {
+          if (tempVar.length !== 4) {
+            tempVar.recipe.push({ recipe: result });
+          } else {
+            recipeRow.push(tempVar);
+            tempVar.recipe = [];
+          }
+        });
+      } else {
+        results.forEach(function(result) {
+          tempVar.recipe.push(result);
+        });
+        recipeRow.push(tempVar);
+      };
+      res.render("index", { recipeRow: recipeRow });
     });
   });
 
