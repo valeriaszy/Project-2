@@ -47,7 +47,7 @@ module.exports = function(app) {
       RecipeId: row.recipeId,
       IngredientId: row.ingredientId,
       quantity: row.quantity,
-      unitOfMeasure: row.measure
+      unitOfMeasure: row.measurement
     }).then(function(result){
       res.json(result);
     });
