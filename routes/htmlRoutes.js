@@ -1,9 +1,6 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/view", function(req, res) {
-    res.render("view");
-  });
   app.get("/login", function(req, res) {
     res.render("login");
   });
@@ -33,8 +30,34 @@ module.exports = function(app) {
           tempVar.recipe.push(result);
         });
         recipeRow.push(tempVar);
-      };
+      }
       res.render("index", { recipeRow: recipeRow });
+    });
+  });
+
+  app.get("/recipe/:id", function(req, res) {
+    var query = {};
+    if (req.params.id) {
+      query = { id: req.params.id };
+    }
+
+    db.Recipe.findOne({
+      where: query,
+      include: [
+        {
+          model: db.Ingredient,
+          attributes: ["id", "name"],
+          as: "Ingredients",
+          through: {
+            attributes: ["quantity", "unitOfMeasure"],
+            as: "Quantity"
+          },
+          require: true
+        }
+      ]
+    }).then(function(result) {
+      //res.json(result);
+      res.render("view", { recipe: result });
     });
   });
 

@@ -4,28 +4,6 @@ var db = require("../models");
 module.exports = function(app) {
   //Recipe
   // return all recipe or via id
-  app.get("/api/recipe/:id?", function(req, res) {
-    var query = {};
-    if (req.params.id) {
-      query = { id: req.params.id };
-    }
-
-    db.Recipe.findAll(
-      { where:query,
-        include:[{
-          model:db.Ingredient,
-          attributes:["id","name"],
-          as:"Ingredients",
-          through:{
-            attributes:["quantity","unitOfMeasurement"]
-          },
-          require:true
-        }]
-      }
-    ).then(function(results) {
-      res.json(results);
-    });
-  });
 
   //Adding new recipe
   app.post("/api/recipe", function(req,res) {
