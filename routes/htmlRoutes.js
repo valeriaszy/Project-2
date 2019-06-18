@@ -13,24 +13,36 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.Recipe.findAll({}).then(function(results) {
-      var recipeRow = [];
-      var tempVar = {};
-      tempVar.recipe = [];
-      if (results.length >= 5) {
-        results.forEach(function(result) {
-          if (tempVar.length !== 4) {
-            tempVar.recipe.push({ recipe: result });
-          } else {
-            recipeRow.push(tempVar);
-            tempVar.recipe = [];
-          }
-        });
-      } else {
-        results.forEach(function(result) {
-          tempVar.recipe.push(result);
-        });
-        recipeRow.push(tempVar);
+      var recipeRow = recipeViewHelp(results);
+      res.render("index", { recipeRow: recipeRow });
+    });
+  });
+
+  app.get("/search/ing/:ing", function(req, res) {
+    var recipeRow;
+    db.Ingredient.findOne({
+      where: {
+        name: req.params.ing
+      },
+      include: {
+        model: db.Recipe,
+        as: "Recipes",
+        through: false
+      },
+      require: true
+    }).then(function(result) {
+      recipeRow = recipeViewHelp(result.Recipes);
+      res.render("index", { recipeRow: recipeRow });
+    });
+  });
+
+  app.get("/search/rec/:rec", function(req, res) {
+    db.Recipe.findAll({
+      where: {
+        name: req.params.rec
       }
+    }).then(function(results) {
+      recipeRow = recipeViewHelp(results);
       res.render("index", { recipeRow: recipeRow });
     });
   });
@@ -61,19 +73,29 @@ module.exports = function(app) {
     });
   });
 
-  // Load example page and pass in an example by id
-  /*app.get("/recipe/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.render("example", {
-        example: dbExample
-      });
-    });
-  });*/
-
-  // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
   });
 };
+
+function recipeViewHelp(recipeArr) {
+  var resultRow = [];
+  var tempVar = {};
+  tempVar.recipe = [];
+  if (recipeArr.length >= 5) {
+    recipeArr.forEach(function(result) {
+      if (tempVar.length !== 4) {
+        tempVar.recipe.push({ recipe: result });
+      } else {
+        resultRow.push(tempVar);
+        tempVar.recipe = [];
+      }
+    });
+  } else {
+    recipeArr.forEach(function(result) {
+      tempVar.recipe.push(result);
+    });
+    resultRow.push(tempVar);
+  }
+  return resultRow;
+}
