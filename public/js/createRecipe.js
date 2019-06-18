@@ -5,7 +5,9 @@ $(".addIngredient").on("click", function(event) {
 
 $("form").on("submit", function(event) {
   event.preventDefault();
-  handleSubmit();
+  handleSubmit(function(resultId) {
+    location.replace("/recipe/" + resultId);
+  });
 });
 
 //// FUNCTION DECLARE
@@ -98,7 +100,7 @@ function checkIngredient(name, cb) {
 //Handling submission
 //Compose the JSON data for posting
 
-function handleSubmit() {
+function handleSubmit(cb) {
   var newRecipe = {
     name: $("#RecipeName")
       .val()
@@ -140,25 +142,9 @@ function handleSubmit() {
           data: measurementData
         });
       });
+    },
+    complete: function(result) {
+      cb(result.id);
     }
   });
 }
-
-// function addRecipes(event) {
-//   var ingridientsList = document.getElementById("noOfIngridients");
-//   var recipeData = {
-//     recipeName: $("#RecipeName")
-//       .val()
-//       .trim(),
-//     noOfIngridients:
-//       ingridientsList.options[ingridientsList.selectedIndex].value,
-//     desction: $("#instructions")
-//       .val()
-//       .trim()
-//   };
-// }
-// // Add event listeners to the submit and delete buttons
-// $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
-// // when you click on the add recipe button
-// $("#add-recipe").on("click", addRecipes);
