@@ -12,6 +12,7 @@ module.exports = function(app) {
       name: newRecipe.name,
       description: newRecipe.description,
       instructions: newRecipe.instructions,
+      imageURL: newRecipe.imageURL
     }).then(function(result){
       res.json(result);
     });
