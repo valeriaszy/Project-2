@@ -1,22 +1,28 @@
+body{
+  background: url("Recipes-Background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 .list-group-item {
   line-height: 2.5;
 }
 
 .navbar-brand {
   font-family: 'montserrat';
-  font-size:35px 
+  font-size:35px; 
 }
 
 .nav-item {
-  font-family: 'roboto'
+  font-family: 'montserrat';
+  color:rgb(2, 2, 2);
 }
 /*Shop Handlebars Css*/
 .shop {
   box-sizing: border-box;
-  height:100%;
-  width:100%;
-  margin-top:-10px;
-  padding:30px;
+  height:40%;
+  width:70%;
+  padding:0px;
+  margin: 0 auto;
 }
 /* Remove margins and padding from the list */
 ul {
@@ -30,4 +36,98 @@ ul {
   color: rgb(2, 2, 2);
   text-align: center;
 }
+/*View Handlebars CSS*/
+.recipe-name{
+  font-family: 'montserrat';
+  font-size:20px;
+  text-align: justify;
+  text-align-last: center;
+}
 
+.view-ingridient{
+  font-family: 'montserrat';
+  font-size:20px; 
+  padding: 50px;
+  text-align: justify;
+  text-align-last: center;
+}
+
+.view-instruction{
+  font-family: 'montserrat';
+  font-size:20px;
+  padding: 50px;
+  text-align: justify;
+  text-align-last: center;
+}
+
+.logo-image{
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: -6px;
+}
+
+.sign-up{
+  text-align: justify;
+  text-align-last: center;
+  margin: 0 auto;
+}
+
+/* Animation CSS */
+body,html{
+  margin: 0;
+  padding: 0;
+  font-family: "montserrat";
+  width: 100%;
+  height: 100%;
+}
+.section-top{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background-image: url(https://foodrevolution.org/wp-content/uploads/2018/03/blog-featured_healthy_foods-20180306.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: slide 10s;
+}
+.content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  text-transform: uppercase;
+  text-align: center;
+}
+.content h1{
+  color: white;
+  font-size: 400%;
+  letter-spacing: 16px;
+  text-shadow: 2px 2px rgb(0, 0, 0);
+}
+.content a{
+  background: #0984e3;
+  padding: 10px 24px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius:20px;
+}
+p{
+  font-size: 20px;
+  padding: 10px;
+  line-height: 24px;
+}
+@keyframes slide {
+  0%{
+      background-image: url(https://foodrevolution.org/wp-content/uploads/2018/03/blog-featured_healthy_foods-20180306.jpg);
+  }
+
+  33%{
+  background-image: url(https://foodrevolution.org/wp-content/uploads/2018/04/blog-featured-diabetes-20180406-1330.jpg);
+}
+  67%{
+  background-image: url(https://www.incimages.com/uploaded_files/image/970x450/getty_855098134_353411.jpg);
+}
+}
