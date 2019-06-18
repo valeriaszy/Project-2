@@ -4,28 +4,6 @@ var db = require("../models");
 module.exports = function(app) {
   //Recipe
   // return all recipe or via id
-  app.get("/api/recipe/:id?", function(req, res) {
-    var query = {};
-    if (req.params.id) {
-      query = { id: req.params.id };
-    }
-
-    db.Recipe.findAll(
-      { where:query,
-        include:[{
-          model:db.Ingredient,
-          attributes:["id","name"],
-          as:"Ingredients",
-          through:{
-            attributes:["quantity","unitOfMeasurement"]
-          },
-          require:true
-        }]
-      }
-    ).then(function(results) {
-      res.json(results);
-    });
-  });
 
   //Adding new recipe
   app.post("/api/recipe", function(req,res) {
@@ -44,10 +22,10 @@ module.exports = function(app) {
     //newRows = req.body;
     row = req.body;
     db.Measurement.create({
-      recipeId: row.RecipeId,
-      ingredientId: row.IngredientId,
+      RecipeId: row.recipeId,
+      IngredientId: row.ingredientId,
       quantity: row.quantity,
-      unitOfMeasure: row.unitOfMeasure
+      unitOfMeasure: row.measurement
     }).then(function(result){
       res.json(result);
     });
@@ -90,7 +68,7 @@ module.exports = function(app) {
           {
             status:404,
             error: "Not found"
-          },
+          }
         );
       }
       
