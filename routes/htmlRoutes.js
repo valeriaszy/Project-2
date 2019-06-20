@@ -18,6 +18,10 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/intro", function(req, res) {
+    res.render("intro");
+  });
+
   app.get("/search/ing/:ing", function(req, res) {
     var recipeRow;
     db.Ingredient.findOne({
