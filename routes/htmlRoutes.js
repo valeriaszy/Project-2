@@ -11,14 +11,14 @@ module.exports = function(app) {
     res.render("add");
   });
   // Load index page
-  app.get("/", function(req, res) {
+  app.get("/index", function(req, res) {
     db.Recipe.findAll({}).then(function(results) {
       var recipeRow = recipeViewHelp(results);
       res.render("index", { recipeRow: recipeRow });
     });
   });
 
-  app.get("/intro", function(req, res) {
+  app.get("/", function(req, res) {
     res.render("intro");
   });
 
