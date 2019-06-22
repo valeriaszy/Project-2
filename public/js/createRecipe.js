@@ -81,7 +81,7 @@ function checkIngredient(name, cb) {
     type: "GET",
     url: "/api/search/ing/" + searchIngredient
   }).then(function(result) {
-    if (result.status && result.status == 404) {
+    if (result.status && result.status === 404) {
       $.ajax({
         type: "POST",
         url: "/api/ingredients",
